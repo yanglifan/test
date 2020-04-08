@@ -1,20 +1,17 @@
 package yanglifan.test.path_process;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ServiceLoader;
 
 /**
  * @author Yang Lifan
  */
 public class PathProcessManager implements PathProcessor {
-    private List<PathProcessor> processors = new ArrayList<>();
+    private Iterable<PathProcessor> processors;
+    private int processorNumber;
 
     public void init() {
-        /* BE CARE TO CHANGE THE ORDER */
-        processors.add(new LastSlashPathProcessor()); // /home/ -> /home
-        processors.add(new DoubleSlashesPathProcessor()); // /home//abc/ -> /home/abc/
-        processors.add(new SingleDotPathProcessor()); // /home/./abc/ -> /home/abc/
-        processors.add(new DoubleDotsPathProcessor()); // /home/.. -> /， must be after with SingleDotPathProcessor
+        processors = ServiceLoader.load(PathProcessor.class);
+        processorNumber = getProcessorNumber();
     }
 
     @Override
@@ -30,7 +27,7 @@ public class PathProcessManager implements PathProcessor {
 
         int notNeedProcessCount = 0;
 
-        while (notNeedProcessCount < processors.size()) {
+        while (notNeedProcessCount < processorNumber) {
             notNeedProcessCount = 0;
             for (PathProcessor processor : processors) {
                 if (!processor.needProcess(path)) {
@@ -43,5 +40,13 @@ public class PathProcessManager implements PathProcessor {
         }
 
         return path;
+    }
+
+    private int getProcessorNumber() {
+        int number = 0;
+        for (PathProcessor ignored : processors) {
+            number++;
+        }
+        return number;
     }
 }
