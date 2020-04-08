@@ -14,7 +14,7 @@ public class PathProcessManager implements PathProcessor {
         processors.add(new LastSlashPathProcessor()); // /home/ -> /home
         processors.add(new DoubleSlashesPathProcessor()); // /home//abc/ -> /home/abc/
         processors.add(new SingleDotPathProcessor()); // /home/./abc/ -> /home/abc/
-        processors.add(new DoubleDotsPathProcessor()); // /home/.. -> /
+        processors.add(new DoubleDotsPathProcessor()); // /home/.. -> /， must be after with SingleDotPathProcessor
     }
 
     @Override
@@ -30,19 +30,18 @@ public class PathProcessManager implements PathProcessor {
 
         int notNeedProcessCount = 0;
 
-        String currentPath = path;
         while (notNeedProcessCount < processors.size()) {
             notNeedProcessCount = 0;
             for (PathProcessor processor : processors) {
-                if (!processor.needProcess(currentPath)) {
+                if (!processor.needProcess(path)) {
                     notNeedProcessCount++;
                     continue;
                 }
 
-                currentPath = processor.doProcess(currentPath);
+                path = processor.doProcess(path);
             }
         }
 
-        return currentPath;
+        return path;
     }
 }
