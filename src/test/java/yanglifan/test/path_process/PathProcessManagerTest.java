@@ -34,6 +34,7 @@ public class PathProcessManagerTest {
                 {"//", "/"},
                 {"/////", "/"},
                 {"/home//abc", "/home/abc"},
+                {"/home/./abc", "/home/abc"},
                 {"/home/", "/home"}
         });
     }

@@ -12,6 +12,7 @@ public class PathProcessManager implements PathProcessor {
     public void init() {
         processors.add(new LastSlashPathProcessor()); // /home/ -> /home
         processors.add(new DoubleSlashesPathProcessor()); // /home//abc/ -> /home/abc/
+        processors.add(new SingleDotPathProcessor()); // /home/./abc/ -> /home/abc/
     }
 
     @Override
