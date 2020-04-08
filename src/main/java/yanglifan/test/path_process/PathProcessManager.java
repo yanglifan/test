@@ -10,7 +10,8 @@ public class PathProcessManager implements PathProcessor {
     private List<PathProcessor> processors = new ArrayList<>();
 
     public void init() {
-        processors.add(new LastSlashPathProcessor());
+        processors.add(new LastSlashPathProcessor()); // /home/ -> /home
+        processors.add(new DoubleSlashesPathProcessor()); // /home//abc/ -> /home/abc/
     }
 
     @Override
