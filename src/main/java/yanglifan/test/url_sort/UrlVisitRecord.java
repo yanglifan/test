@@ -9,7 +9,15 @@ class UrlVisitRecord implements Comparable<UrlVisitRecord> {
 
     public UrlVisitRecord(String url) {
         this.url = url;
-        visitCount = new AtomicInteger();
+        visitCount = new AtomicInteger(0);
+    }
+
+    @Override
+    public String toString() {
+        return "UrlVisitRecord{" +
+                "url='" + url + '\'' +
+                ", visitCount=" + visitCount +
+                '}';
     }
 
     @Override
