@@ -1,4 +1,4 @@
-package yanglifan.test.leetcode;
+package yanglifan.test.leetcode.interview.easy;
 
 /**
  * https://leetcode-cn.com/explore/featured/card/top-interview-questions-easy/1/array/23/
