@@ -1,0 +1,4 @@
+yanglifan.test.others.path_process.LastSlashPathProcessor
+yanglifan.test.others.path_process.DoubleSlashesPathProcessor
+yanglifan.test.others.path_process.SingleDotPathProcessor
+yanglifan.test.others.path_process.DoubleDotsPathProcessor

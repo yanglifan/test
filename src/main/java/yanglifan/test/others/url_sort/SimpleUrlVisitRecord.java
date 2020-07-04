@@ -1,4 +1,4 @@
-package yanglifan.test.url_sort;
+package yanglifan.test.others.url_sort;
 
 import java.util.ArrayList;
 import java.util.List;

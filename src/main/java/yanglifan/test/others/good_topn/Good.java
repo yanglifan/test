@@ -1,4 +1,4 @@
-package yanglifan.test.good_topn;
+package yanglifan.test.others.good_topn;
 
 import java.util.Objects;
 

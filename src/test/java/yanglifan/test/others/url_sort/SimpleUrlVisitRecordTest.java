@@ -1,4 +1,4 @@
-package yanglifan.test.url_sort;
+package yanglifan.test.others.url_sort;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
