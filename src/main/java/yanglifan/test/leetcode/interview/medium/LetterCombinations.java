@@ -7,11 +7,12 @@ import java.util.Map;
 
 /**
  * https://leetcode-cn.com/leetbook/read/top-interview-questions-medium/xv8ka1/
- *
+ * <p>
  * TODO 未提交
  */
 public class LetterCombinations {
-    private Map<String, String> phone = new HashMap<String, String>() {{
+    private final List<String> results = new ArrayList<>();
+    private final Map<String, String> phone = new HashMap<String, String>() {{
         put("2", "abc");
         put("3", "def");
         put("4", "ghi");
@@ -22,8 +23,6 @@ public class LetterCombinations {
         put("9", "wxyz");
     }};
 
-    private List<String> results = new ArrayList<>();
-
     public List<String> letterCombinations(String digits) {
         backtrack("", digits);
         return results;
@@ -31,7 +30,9 @@ public class LetterCombinations {
 
     private void backtrack(String combinations, String digits) {
         if (digits.length() == 0) {
-            results.add(combinations);
+            if (combinations.length() > 0) {
+                results.add(combinations);
+            }
             return;
         }
 

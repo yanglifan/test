@@ -14,4 +14,10 @@ public class LetterCombinationsTest {
         List<String> results = letterCombinations.letterCombinations("23");
         assertThat(results).contains("ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf");
     }
+
+    @Test
+    public void test2() {
+        List<String> results = letterCombinations.letterCombinations("");
+        assertThat(results).isEmpty();
+    }
 }
