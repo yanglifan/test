@@ -1,47 +1,53 @@
 package yanglifan.test.leetcode.interview.medium;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.Stack;
 
+/**
+ * 二叉树的锯齿形层次遍历，https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/
+ */
 public class ZigZagLevelOrder {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        if (root == null) {
+            return new ArrayList<>();
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
 
         List<Integer> layer = new ArrayList<>();
-        Queue<TreeNode> layerQueue = new LinkedList<>();
+        Stack<TreeNode> layerStack = new Stack<>();
         int level = 0;
 
         List<List<Integer>> results = new ArrayList<>();
 
-        while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
             layer.add(node.val);
 
-            if (level % 2 == 0) {
+            if (level % 2 == 1) {
                 if (node.right != null) {
-                    layerQueue.add(node.right);
+                    layerStack.push(node.right);
                 }
 
                 if (node.left != null) {
-                    layerQueue.add(node.left);
+                    layerStack.push(node.left);
                 }
             } else {
                 if (node.left != null) {
-                    layerQueue.add(node.left);
+                    layerStack.push(node.left);
                 }
 
                 if (node.right != null) {
-                    layerQueue.add(node.right);
+                    layerStack.add(node.right);
                 }
             }
 
-            if (queue.isEmpty() && !layerQueue.isEmpty()) {
+            if (stack.isEmpty() && !layer.isEmpty()) {
                 level++;
-                queue = layerQueue;
-                layerQueue = new LinkedList<>();
+                stack = layerStack;
+                layerStack = new Stack<>();
 
                 results.add(layer);
                 layer = new ArrayList<>();
